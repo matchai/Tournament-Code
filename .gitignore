@@ -5,3 +5,4 @@ config.codekit
 splash/
 main.css
 main.css.map
+main.min.js
