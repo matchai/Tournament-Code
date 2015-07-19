@@ -3,3 +3,5 @@ config.codekit
 .codekit-cache/
 .sass-cache/
 splash/
+main.css
+main.css.map
