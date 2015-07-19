@@ -134,6 +134,7 @@ body {
 \*------------------------------------*/
 
 .code-generator input[type="text"] {
+  outline: 0;
   background: rgba(255,255,255,0.75);
   border: 1px solid #717171;
 
@@ -141,6 +142,11 @@ body {
   text-align: center;
   font-size: 0.81em;
   font-family: 'Roboto-Regular', sans-serif;
+  transition: box-shadow 0.15s;
+
+  &:focus {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+  }
 }
 
 .code-generator label {
