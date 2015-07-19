@@ -1,1 +1,0 @@
-var id;$("input").keyup(function(){$(this).val()?(id=$(this).attr("id"),$('label[for="'+id+'"]').addClass("labelEnabled"),$('label[for="'+id+'"]').removeClass("labelDisabled")):($('label[for="'+id+'"]').addClass("labelDisabled"),$('label[for="'+id+'"]').removeClass("labelEnabled"))});
