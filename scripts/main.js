@@ -1,8 +1,8 @@
 var id;
 
 $('input').keyup(function() {
+  id = $(this).attr('id');
   if ($(this).val()) {
-    id = $(this).attr('id');
     $('label[for="' + id + '"]').addClass('labelEnabled');
     $('label[for="' + id + '"]').removeClass('labelDisabled');
   } else {
