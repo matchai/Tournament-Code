@@ -60,7 +60,7 @@ html, body, .content::before {
 
 .code-generator {
   display: flex;
-  margin: 22px 35px 22px 35px;
+  margin: 22px 35px 5px 35px;
   z-index: 0;
 }
 
@@ -77,6 +77,11 @@ input[type="text"]{
   margin-left: 10px;
   margin-top: -5px;
   z-index: 1;
+}
+
+.customize {
+  float: right;
+  margin-right: 38px;
 }
 
 /*------------------------------------*\
@@ -149,20 +154,35 @@ body {
   }
 }
 
-.code-generator label {
+.code-generator label, .customize {
   font-size: 0.625em;
   font-family: 'Roboto-Regular', sans-serif;
   color: #717171;
 }
 
-.labelDisabled {
+.code-generator label[class='inactive'] {
   opacity: 0;
   transform: translatey(0);
   transition: transform 0.25s, opacity 0.20s;
 }
 
-.labelEnabled {
+.code-generator label[class='active'] {
   opacity: 1;
   transform: translatey(-10px);
   transition: transform 0.25s, opacity 0.20s;
+}
+
+.status {
+  display: inline;
+  float: left;
+  font-size: 0.625em;
+  font-family: 'Roboto-Light', sans-serif;
+  color: #717171;
+  margin: 4px 0 0 43px;
+}
+
+.customize {
+  border: 0;
+  background: 0;
+  outline: 0;
 }

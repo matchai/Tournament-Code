@@ -12,14 +12,32 @@
   <div class="wrapper">
     <div class="content">
       <form class="code-generator" action="">
-          <label for="gameName" class="labelDisabled">Game Name</label>
+          <label for="gameName" class="inactive">Game Name</label>
           <input type="text" id="gameName" maxlength="33" placeholder="Game Name">
-          <label for="password" class="labelDisabled">Password</label>
+          <label for="password" class="inactive">Password</label>
           <input type="text" id="password" placeholder="Password">
       </form>
+      <p class="status">Summoner's Rift, Tournament Draft, 5 players per team, Spectators: Drop in Only</p>
+
+      <button class="customize">
+        Customize
+        <svg class="icon" width="8px" height="8px">
+          <use xlink:href="#expand"/>
+        </svg>
+      </button>
     </div>
   </div>
   <script src="scripts/jquery-1.11.3.min.js" charset="utf-8"></script>
   <script src="scripts/main.min.js" charset="utf-8"></script>
+
+  <!-- SVG Symbols -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="expand" viewBox="-1 -1 8 8">
+        <path id="Plus" fill="#727272" d="M0.5,2.5v1h2v2h1v-2h2v-1h-2v-2h-1v2H0.5z"/>
+        <circle id="Circle" fill="none" stroke="#727272" cx="3" cy="3" r="3.5"/>
+      </symbol>
+  </svg>
+
+
 </body>
 </html>
