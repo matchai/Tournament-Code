@@ -11,11 +11,57 @@
   </header>
   <div class="wrapper">
     <div class="content">
-      <form class="code-generator" action="">
-          <label for="gameName" class="inactive">Game Name</label>
-          <input type="text" id="gameName" maxlength="33" placeholder="Game Name">
-          <label for="password" class="inactive">Password</label>
-          <input type="text" id="password" placeholder="Password">
+      <form class="code-generator">
+        <label for="gameName" class="inactive">Game Name</label>
+        <input type="text" id="gameName" maxlength="33" placeholder="Game Name">
+
+        <label for="password" class="inactive">Password</label>
+        <input type="text" id="password" placeholder="Password">
+      </form>
+
+      <form class="custom code-generator">
+        <label for="map" class="active">Map</label>
+        <div class="select-style">
+          <select id="map">
+            <option value="Summoner's Rift">Summoner's Rift</option>
+            <option value="Twisted Treeline">Twisted Treeline</option>
+            <option value="Howling Abyss">Howling Abyss</option>
+            <option value="Crystal Scar">Crystal Scar</option>
+          </select>
+        </div>
+
+        <label for="gameType" class="active">Game Mode</label>
+        <div class="select-style">
+          <select id="gameType">
+            <option value="Tournament Draft">Tournament Draft</option>
+            <option value="Blind Pick">Blind Pick</option>
+            <option value="Draft Mode">Draft Mode</option>
+            <option value="All Random">All Random</option>
+          </select>
+        </div>
+      </form>
+
+      <form class="custom code-generator">
+        <label for="playerNum" class="active">Players Per Team</label>
+        <div class="select-style">
+          <select id="map">
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+          </select>
+        </div>
+
+        <label for="Spectators" class="active">Spectators</label>
+        <div class="select-style">
+          <select id="spectators">
+            <option value="Drop In Only">Drop In Only</option>
+            <option value="Friends">Friends</option>
+            <option value="All">All</option>
+            <option value="None">None</option>
+          </select>
+        </div>
       </form>
 
       <div class="row">

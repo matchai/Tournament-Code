@@ -63,8 +63,9 @@ html, body, .content::before {
   z-index: 0;
 }
 
-input[type="text"]{
-  width: 50%;
+input[type="text"],
+select {
+  flex: 1;
   margin: 0 9px 0 9px;
   padding: 9px;
   z-index: 2;
@@ -149,8 +150,10 @@ body {
     #FORM
 \*------------------------------------*/
 
-.code-generator input[type="text"] {
+.code-generator input[type="text"],
+.code-generator select {
   outline: 0;
+  margin: 0 9px 0 9px;
   background: rgba(255,255,255,0.75);
   border: 1px solid #717171;
 
@@ -164,6 +167,29 @@ body {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
   }
 }
+
+.code-generator select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 0;
+}
+
+.select-style {
+  display: flex;
+  flex: 1;
+  background: transparent url("data:image/png;base64,R0lGODlhDwAUAIABAAAAAP///yH5BAEAAAEALAAAAAAPABQAAAIXjI+py+0Po5wH2HsXzmw//lHiSJZmUAAAOw==") no-repeat 95% 50%;
+}
+
+// On IE, hide background arrow, since dropdown arrow can't be removed
+@media screen and (min-width: 0\0) {
+  .select-style {
+    background: none;
+  }
+}
+
+/**
+* Animated label
+**/
 
 .code-generator label, .customize {
   font-size: 0.625em;
@@ -199,6 +225,11 @@ body {
   padding: 0;
 }
 
+
+/**
+* Animated expand
+**/
+
 .expand {
   transition: transform 0.2s ease-in;
 }
@@ -206,6 +237,11 @@ body {
 .active .expand {
   transform: rotate(45deg);
 }
+
+
+/**
+* Generate button
+**/
 
 .generate {
   font-family: 'Roboto-Regular', sans-serif;
