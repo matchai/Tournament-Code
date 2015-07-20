@@ -48,7 +48,6 @@ html, body, .content::before {
   max-width: 50%;
   position: relative;
   min-width: 620px; //Temporary
-  height: 154px; //Temporary
 
   &::before {
     content: '';
@@ -81,7 +80,19 @@ input[type="text"]{
 
 .customize {
   float: right;
-  margin-right: 38px;
+  margin: 4px 44px 0 0;
+}
+
+.row {
+  overflow: hidden;
+}
+
+.generate {
+  margin: 26px auto;
+}
+
+.center {
+  text-align: center;
 }
 
 /*------------------------------------*\
@@ -176,7 +187,7 @@ body {
   display: inline;
   float: left;
   font-size: 0.625em;
-  font-family: 'Roboto-Light', sans-serif;
+  font-family: 'Roboto-Regular', sans-serif;
   color: #717171;
   margin: 4px 0 0 43px;
 }
@@ -185,4 +196,30 @@ body {
   border: 0;
   background: 0;
   outline: 0;
+  padding: 0;
+}
+
+.expand {
+  transition: transform 0.2s ease-in;
+}
+
+.active .expand {
+  transform: rotate(45deg);
+}
+
+.generate {
+  font-family: 'Roboto-Regular', sans-serif;
+  font-size: 0.687em;
+  letter-spacing: 0.01em;
+  color: #fff;
+  border: 0;
+  outline: 0;
+
+  background: #30AD63;
+  padding: 9px 16px;
+  border-radius: 3px;
+
+  &:focus {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+  }
 }

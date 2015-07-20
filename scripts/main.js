@@ -15,7 +15,7 @@ $('input').keyup(function() {
   }
 });
 
-// Advanced pane
+// Advanced pane expansion
 $('.customize').click(function() {
-  $(this).addClass('active');
+  $(this).toggleClass('active');
 });

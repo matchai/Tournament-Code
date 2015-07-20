@@ -17,14 +17,22 @@
           <label for="password" class="inactive">Password</label>
           <input type="text" id="password" placeholder="Password">
       </form>
-      <p class="status">Summoner's Rift, Tournament Draft, 5 players per team, Spectators: Drop in Only</p>
 
-      <button class="customize">
-        Customize
-        <svg class="icon" width="8px" height="8px">
-          <use xlink:href="#expand"/>
-        </svg>
-      </button>
+      <div class="row">
+        <p class="status">Summoner's Rift, Tournament Draft, 5 players per team, Spectators: Drop in Only</p>
+
+        <button class="customize">
+          Customize
+          <svg class="expand" width="8px" height="8px">
+            <use xlink:href="#expand"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="center">
+        <input type="submit" value="GENERATE" class="generate">
+      </div>
+
     </div>
   </div>
   <script src="scripts/jquery-1.11.3.min.js" charset="utf-8"></script>
