@@ -23,7 +23,7 @@ $('input').keyup(function() {
   }
 });
 
-
+/*
 // Advanced pane expansion
 $('.customize').click(function() {
   $(this).toggleClass('active');
@@ -34,8 +34,9 @@ $('.customize').click(function() {
   } else {
     $('select').attr('disabled', 'disabled');
   }
-  
-  $('.expand').toggleClass('hidden');
+
+  $('.expand').toggleClass('hidden').toggleClass('revealed');
   $('.expand label').toggleClass('inactive').toggleClass('active');
 });
+*/
 
