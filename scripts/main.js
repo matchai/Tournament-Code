@@ -23,7 +23,19 @@ $('input').keyup(function() {
   }
 });
 
+
 // Advanced pane expansion
 $('.customize').click(function() {
   $(this).toggleClass('active');
+
+  // Activate/Disactivate hidden fields
+  if ($(this).hasClass('active')){
+    $('select').removeAttr('disabled');
+  } else {
+    $('select').attr('disabled', 'disabled');
+  }
+  
+  $('.expand').toggleClass('hidden');
+  $('.expand label').toggleClass('inactive').toggleClass('active');
 });
+
