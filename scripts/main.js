@@ -700,7 +700,7 @@ var splashes = [
 var background = 'url(img/splash/' + splashes[Math.floor(Math.random() * splashes.length)] + ')';
 
 $( document ).ready(function() {
-  $('<style>body, .content:before{background:'+background+' center center no-repeat fixed; background-size: cover; }</style>').appendTo('head');
+  $('<style>body, .content:before{background:'+background+' center right no-repeat fixed; background-size: cover; }</style>').appendTo('head');
   $('#gameName').focus();
 });
 
