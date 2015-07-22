@@ -39,9 +39,8 @@ html, body, .content::before {
     box-shadow: 0 20px 20px rgba(0, 0, 0, 0.19),
                 0 2px 8px rgba(0, 0, 0, 0.5);
 
-  max-width: 50%;
   position: relative;
-  min-width: 620px; //Temporary
+  min-width: 620px;
 
   &::before {
     filter: url('#blur');
@@ -109,6 +108,7 @@ header {
 .header--logo {
   font-size: 1.5em;
   letter-spacing: 0.4px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
   font-family: 'Roboto-Light', sans-serif;
 }
 
@@ -151,7 +151,7 @@ header {
 }
 
 // On IE, hide background arrow, since dropdown arrow can't be removed
-@media screen and (min-width: 0\0) {
+@media screen and (dth: 0\0) {
   .select-style {
     background: none;
   }
@@ -181,7 +181,7 @@ header {
   font-size: 0.625em;
   font-family: 'Roboto-Regular', sans-serif;
   color: #717171;
-  margin: 4px 0 0 43px;
+  margin: 4px 43px 0 43px;
 }
 
 .customize {
@@ -282,5 +282,38 @@ header {
   }
   100% {
     max-height: 127px;
+  }
+}
+
+/*------------------------------------*\
+    #MEDIA-QUERIES
+\*------------------------------------*/
+
+@media (max-width:768px) {
+  body::before {
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.00) 48%, rgba(0,0,0,0.41) 100%);
+    //background-image: none;
+  }
+
+  header {
+    top: 20px;
+    left: 50%;
+    transform: translatex(-50%);
+  }
+
+  .header--logo {
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .wrapper .content {
+    min-width: calc(100% - 50px);
+  }
+
+  .code-generator {
+    flex-direction: column;
+  }
+
+  .code-generator input[type="text"] {
+    margin: 5px 9px;
   }
 }
