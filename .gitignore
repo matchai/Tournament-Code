@@ -2,7 +2,6 @@
 config.codekit
 .codekit-cache/
 .sass-cache/
-splash/
 stylesheets/main.css
 stylesheets/main.css.map
 main.min.js
