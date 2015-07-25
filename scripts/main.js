@@ -704,6 +704,8 @@ $( document ).ready(function() {
   $('#gameName').focus();
 });
 
+
+
 /*------------------------------------*\
     UI Interaction
 \*------------------------------------*/
@@ -737,3 +739,37 @@ $('.customize').click(function() {
   $('.expand label').toggleClass('inactive').toggleClass('active');
 });
 
+// Generate button
+$('.generate').click(function() {
+  $(this).addClass('generated');
+});
+
+
+
+/*------------------------------------*\
+    Status
+\*------------------------------------*/
+
+var gameSettings = {
+  'name': '',
+  'password': '',
+  'map': 'Summoner\'s Rift',
+  'gameType': 'Tournament Draft',
+  'players': '5',
+  'spectators': 'Drop In Only'
+};
+
+var statusLine;
+function setStatus(){
+  statusLine = gameSettings.map + ", " +
+               gameSettings.gameType + ", " +
+               gameSettings.players + " players per team, " +
+               "Spectators: " + gameSettings.spectators;
+}
+
+$('select, input').change(function() {
+  var prop = $(this).attr('id');
+  gameSettings[prop] = $(this).val();
+  setStatus();
+  $('.status').html(statusLine);
+});
