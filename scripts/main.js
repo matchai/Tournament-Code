@@ -700,7 +700,7 @@ var splashes = [
 var background = 'url(img/splash/' + splashes[Math.floor(Math.random() * splashes.length)] + ')';
 
 $( document ).ready(function() {
-  $('<style>body, .content:before{background:'+background+' 80% center no-repeat fixed; background-size: cover; }</style>').appendTo('head');
+  $('<style>body{background:'+background+' 80% center no-repeat fixed; background-size: cover; }</style>').appendTo('head');
   $('#gameName').focus();
 });
 
@@ -721,7 +721,7 @@ $('input').keyup(function() {
   }
 });
 
-/*
+
 // Advanced pane expansion
 $('.customize').click(function() {
   $(this).toggleClass('active');
@@ -736,5 +736,4 @@ $('.customize').click(function() {
   $('.expand').toggleClass('hidden').toggleClass('revealed');
   $('.expand label').toggleClass('inactive').toggleClass('active');
 });
-*/
 

@@ -43,8 +43,8 @@ html, body, .content::before {
   min-width: 620px;
 
   &::before {
-    filter: url('#blur');
-    filter: blur(5px);
+    //filter: url('#blur');
+    //filter: blur(5px);
 
     content: '';
     z-index: -1;
@@ -57,6 +57,8 @@ html, body, .content::before {
   display: flex;
   margin: 22px 35px 5px 35px;
   z-index: 0;
+  transform: translate3d(0,0,0);
+  transform: scale(1);
 }
 
 input[type="text"],
@@ -196,41 +198,45 @@ header {
 * Animated expand
 **/
 
-//.expand-icon {
-//  transition: transform 0.2s ease-in;
-//}
-//
-//.active .expand-icon {
-//  transform: rotate(45deg);
-//}
-//
-//.expand {
-//  overflow: hidden;
-//  transition: all 0.6s cubic-bezier(.62,.28,.23,.99);
-//  //transform: scaleY(1);
-//}
-//
-//.hidden {
-//  max-height: 0;
-//  //transform: scaleY(0);
-//  //overflow: hidden;
-//  //transition: all 0.6s cubic-bezier(.62,.28,.23,.99);
-//}
-//
-//.revealed {
-//  animation: reveal 0.5s;
-//}
-//
-//.expand label[class='inactive'] {
-//  opacity: 0;
-//  animation: reverselabel 0.2s forwards;
-//}
-//
-//.expand label[class='active'] {
-//  opacity: 0;
-//  animation: label 0.2s forwards;
-//  animation-delay: 0.6s;
-//}
+.expand-icon {
+  transition: transform 0.2s ease-in;
+}
+
+.active .expand-icon {
+  transform: rotate(45deg);
+}
+
+.expand label[class='inactive'] {
+  opacity: 0;
+  animation: reverselabel 0.2s forwards;
+}
+
+.expand label[class='active'] {
+  opacity: 0;
+  animation: label 0.2s forwards;
+  animation-delay: 0.4s;
+}
+
+.expand {
+  max-height: 300px;
+  transition: max-height 0.4s cubic-bezier(.62,.28,.23,.99);
+}
+
+.expand .code-generator {
+  opacity: 0;
+  transition: opacity 0.2s linear;
+  transition-delay: 0.2s;
+}
+
+.revealed .code-generator {
+  opacity: 1;
+}
+
+.hidden {
+  max-height: 0;
+  overflow: hidden;
+}
+
 
 /**
 * Generate button
@@ -279,9 +285,18 @@ header {
     transform: translatey(-10px);
   }
   100% {
-
     opacity: 0;
     transform: translatey(0);
+  }
+}
+
+@keyframes reveal {
+  0% {
+    max-height: 0;
+  }
+
+  100% {
+    max-height: 125px;
   }
 }
 
@@ -292,7 +307,6 @@ header {
 @media (max-width:768px) {
   body::before {
     background-image: linear-gradient(0deg, rgba(0,0,0,0.00) 48%, rgba(0,0,0,0.41) 100%);
-    //background-image: none;
   }
 
   header {
