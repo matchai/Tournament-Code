@@ -741,7 +741,7 @@ $('.customize').click(function() {
 
 // Generate button
 $('.generate').click(function() {
-  $(this).addClass('generated');
+  $('#output').addClass('active').removeAttr('disabled');
 });
 
 
@@ -767,6 +767,7 @@ function setStatus(){
                "Spectators: " + gameSettings.spectators;
 }
 
+// Changing the value of any select or input changes the gameSettings obj
 $('select, input').change(function() {
   var prop = $(this).attr('id');
   gameSettings[prop] = $(this).val();
