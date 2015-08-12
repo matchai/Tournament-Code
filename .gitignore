@@ -1,7 +1,5 @@
 .DS_Store
-config.codekit
-.codekit-cache/
 .sass-cache/
 stylesheets/main.css
 stylesheets/main.css.map
-main.min.js
+dist/
