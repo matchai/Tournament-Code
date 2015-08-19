@@ -6,23 +6,22 @@
   box-sizing: border-box;
 }
 
-html {
-  font-family: 'Roboto-Regular', sans-serif;
+body {
+  font-family: 'Roboto', sans-serif;
+
+  &::before {
+    background-image: radial-gradient(50% 50%, rgba(0,0,0,0.00) 50%, rgba(0,0,0,0.04) 89%, rgba(0,0,0,0.39) 100%);
+
+    display: flex;
+    flex-direction: column;
+    content: '';
+    position: fixed;
+       top: 0;
+     right: 0;
+    bottom: 0;
+      left: 0;
+  }
 }
-
-body::before {
-  background-image: radial-gradient(50% 50%, rgba(0,0,0,0.00) 50%, rgba(0,0,0,0.04) 89%, rgba(0,0,0,0.39) 100%);
-
-  display: flex;
-  flex-direction: column;
-  content: '';
-  position: fixed;
-     top: 0;
-   right: 0;
-  bottom: 0;
-    left: 0;
-}
-
 
 html, body, .content::before {
   width: 100%;
@@ -114,11 +113,11 @@ header {
   font-size: 1.5em;
   letter-spacing: 0.4px;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
-  font-family: 'Roboto-Light', sans-serif;
+  font-weight: 300;
 }
 
 .header--logo__light {
-  font-family: 'Roboto-Thin', sans-serif;
+  font-weight: 100;
 }
 
 /*------------------------------------*\
@@ -136,7 +135,7 @@ header {
   color: #717171;
   text-align: center;
   font-size: 0.81em;
-  font-family: 'Roboto-Regular', sans-serif;
+  font-weight: 400;
   transition: box-shadow 0.15s;
 
   &:focus {
@@ -169,7 +168,7 @@ header {
 
 .code-generator label, .customize {
   font-size: 0.625em;
-  font-family: 'Roboto-Regular', sans-serif;
+  font-weight: 400;
   color: #717171;
 }
 
@@ -185,7 +184,7 @@ header {
   display: inline;
   float: left;
   font-size: 0.625em;
-  font-family: 'Roboto-Regular', sans-serif;
+  font-weight: 400;
   color: #717171;
   margin: 4px 43px 0 43px;
 }
@@ -256,7 +255,7 @@ header {
 **/
 
 .generate {
-  font-family: 'Roboto-Regular', sans-serif;
+  font-weight: 400;
   font-size: 0.687em;
   letter-spacing: 0.01em;
   color: #fff;
@@ -296,7 +295,8 @@ header {
 
 
   transition: width 0.5s ease-out,
-              padding 0.5s ease-out;
+              padding 0.5s ease-out,
+              box-shadow 0.15s linear;
 }
 
 #output[class='active'] {
