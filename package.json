@@ -1,0 +1,25 @@
+{
+  "name": "tournament-code",
+  "version": "1.0.0",
+  "description": "A simple tournament code generator for League of Legends.",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "browser-sync": "^2.8.2",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-deploy-git": "^0.5.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-uglify": "^1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matchai/Tournament-Code.git"
+  },
+  "author": "matchai (Matan Kushner)",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/matchai/Tournament-Code/issues"
+  },
+  "homepage": "https://github.com/matchai/Tournament-Code"
+}
