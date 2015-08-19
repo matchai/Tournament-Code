@@ -72,4 +72,4 @@ gulp.task('deploy', ['copy', 'css', 'js'], function() {
 
 
 // Default task
-gulp.task('default', ['copy', 'css', 'js', 'serve']);
+gulp.task('default', ['copy', 'css', 'js', 'watch']);
