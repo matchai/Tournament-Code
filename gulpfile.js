@@ -11,7 +11,7 @@ var uglify = require('gulp-uglify');
 // General packages
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
-var deploy = require('gulp-deploy-git');
+var deploy = require('gulp-gh-pages');
 
 
 var copyFiles = [
@@ -67,10 +67,7 @@ gulp.task('copy', function() {
 // Deploy task
 gulp.task('deploy', ['copy', 'css', 'js'], function() {
   return gulp.src('./dist/**/*')
-    .pipe(deploy({
-      repository: 'https://github.com/matchai/Tournament-Code.git',
-      branches: ['ghpages']
-    }));
+    .pipe(deploy());
 });
 
 
