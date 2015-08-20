@@ -751,8 +751,6 @@ $('.generate').click(function() {
 \*------------------------------------*/
 
 var gameSettings = {
-  'name': '',
-  'password': '',
   'map': 'Summoner\'s Rift',
   'gameType': 'Tournament Draft',
   'players': '5',
@@ -774,3 +772,75 @@ $('select, input').change(function() {
   setStatus();
   $('.status').html(statusLine);
 });
+
+/*------------------------------------*\
+    Tournament Code Generation
+\*------------------------------------*/
+
+var TCSettings = {
+  'name': '',
+  'password': '',
+  'map': '',
+  'type': '',
+  'size': '',
+  'spectators': '',
+  'reportURL': '',
+
+};
+
+function updateTCSettings() {
+  // Fetch game name and password values from input fields
+  TCSettings.name = $('#gameName').val();
+  TCSettings.password = $('#password').val();
+
+  // Map ID association
+  switch (gameSettings.map) {
+    case 'Crystal Scar':
+      TCSettings.map = 8;
+      break;
+    case 'Twisted Treeline':
+      TCSettings.map = 10; //ID 10 is for new Twisted Treeline
+      break;
+    case 'Summoner\'s Rift':
+      TCSettings.map = 11; //ID 11 is for new Summoner's Rift
+      break;
+    case 'Howling Abyss':
+      TCSettings.map = 12;
+      break;
+  }
+
+  // Game Type ID association
+  switch (gameSettings.gameType) {
+    case 'Blind Pick':
+      TCSettings.type = 1;
+      break;
+    case 'Draft Mode':
+      TCSettings.type = 2;
+      break;
+    case 'All Random':
+      TCSettings.type = 4;
+      break;
+    case 'Tournament Draft':
+      TCSettings.type = 6;
+      break;
+  }
+
+  TCSettings.size = Number(gameSettings.players);
+
+  switch (gameSettings.spectators) {
+    case 'None':
+      TCSettings.spectators = 'NONE';
+      break;
+    case 'Drop In Only':
+      TCSettings.spectators = 'DROPINONLY';
+      break;
+    case 'Friends':
+      TCSettings.spectators = 'FRIENDS';
+      break;
+    case 'All':
+      TCSettings.spectators = 'ALL';
+      break;
+  }
+
+  console.log(TCSettings);
+}
