@@ -773,6 +773,9 @@ $('select, input').change(function() {
   $('.status').html(statusLine);
 });
 
+
+
+
 /*------------------------------------*\
     Tournament Code Generation
 \*------------------------------------*/
@@ -842,5 +845,5 @@ function updateTCSettings() {
       break;
   }
 
-  console.log(TCSettings);
 }
+

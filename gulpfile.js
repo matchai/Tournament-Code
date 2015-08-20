@@ -19,7 +19,7 @@ var copyFiles = [
         './index.html',
         './fonts/**/*',
         './img/**/*'
-    ]
+    ];
 
 
 // CSS tasks
@@ -37,7 +37,7 @@ gulp.task('css', function() {
 gulp.task('js', function() {
     return gulp.src('./scripts/**/*.js')
         .pipe(uglify())
-        .pipe(gulp.dest('./dist/scripts'))
+        .pipe(gulp.dest('./dist/scripts'));
 });
 
 
@@ -62,7 +62,7 @@ gulp.task('serve', ['css'], function() {
 gulp.task('copy', function() {
     gulp.src(copyFiles, { base: './' })
     .pipe(gulp.dest('./dist'));
-})
+});
 
 // Deploy task
 gulp.task('deploy', ['copy', 'css', 'js'], function() {
