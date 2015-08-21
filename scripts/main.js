@@ -750,7 +750,7 @@ $('.generate').click(function() {
     Status
 \*------------------------------------*/
 
-var gameSettings = {
+var statusSettings = {
   'map': 'Summoner\'s Rift',
   'gameType': 'Tournament Draft',
   'players': '5',
@@ -759,16 +759,16 @@ var gameSettings = {
 
 var statusLine;
 function setStatus(){
-  statusLine = gameSettings.map + ", " +
-               gameSettings.gameType + ", " +
-               gameSettings.players + " players per team, " +
-               "Spectators: " + gameSettings.spectators;
+  statusLine = statusSettings.map + ", " +
+               statusSettings.gameType + ", " +
+               statusSettings.players + " players per team, " +
+               "Spectators: " + statusSettings.spectators;
 }
 
-// Changing the value of any select or input changes the gameSettings obj
+// Changing the value of any select or input changes the statusSettings obj
 $('select, input').change(function() {
   var prop = $(this).attr('id');
-  gameSettings[prop] = $(this).val();
+  statusSettings[prop] = $(this).val();
   setStatus();
   $('.status').html(statusLine);
 });
@@ -780,70 +780,66 @@ $('select, input').change(function() {
     Tournament Code Generation
 \*------------------------------------*/
 
-var TCSettings = {
-  'name': '',
-  'password': '',
+var mapUrl, mapSettings = {
   'map': '',
   'type': '',
   'size': '',
-  'spectators': '',
-  'reportURL': '',
-
+  'spectators': ''
 };
 
-function updateTCSettings() {
-  // Fetch game name and password values from input fields
-  TCSettings.name = $('#gameName').val();
-  TCSettings.password = $('#password').val();
+function generateMapUrl() {
 
   // Map ID association
-  switch (gameSettings.map) {
+  switch (statusSettings.map) {
     case 'Crystal Scar':
-      TCSettings.map = 8;
+      mapSettings.map = 8;
       break;
     case 'Twisted Treeline':
-      TCSettings.map = 10; //ID 10 is for new Twisted Treeline
+      mapSettings.map = 10; //ID 10 is for new Twisted Treeline
       break;
     case 'Summoner\'s Rift':
-      TCSettings.map = 11; //ID 11 is for new Summoner's Rift
+      mapSettings.map = 11; //ID 11 is for new Summoner's Rift
       break;
     case 'Howling Abyss':
-      TCSettings.map = 12;
+      mapSettings.map = 12;
       break;
   }
 
   // Game Type ID association
-  switch (gameSettings.gameType) {
+  switch (statusSettings.gameType) {
     case 'Blind Pick':
-      TCSettings.type = 1;
+      mapSettings.type = 1;
       break;
     case 'Draft Mode':
-      TCSettings.type = 2;
+      mapSettings.type = 2;
       break;
     case 'All Random':
-      TCSettings.type = 4;
+      mapSettings.type = 4;
       break;
     case 'Tournament Draft':
-      TCSettings.type = 6;
+      mapSettings.type = 6;
       break;
   }
 
-  TCSettings.size = Number(gameSettings.players);
+  mapSettings.size = Number(statusSettings.players);
 
-  switch (gameSettings.spectators) {
+  switch (statusSettings.spectators) {
     case 'None':
-      TCSettings.spectators = 'NONE';
+      mapSettings.spectators = 'NONE';
       break;
     case 'Drop In Only':
-      TCSettings.spectators = 'DROPINONLY';
+      mapSettings.spectators = 'DROPINONLY';
       break;
     case 'Friends':
-      TCSettings.spectators = 'FRIENDS';
+      mapSettings.spectators = 'FRIENDS';
       break;
     case 'All':
-      TCSettings.spectators = 'ALL';
+      mapSettings.spectators = 'ALL';
       break;
   }
 
+  // Create first part of tournament code with map settings
+  mapUrl = 'pvpnet://lol/customgame/joinorcreate/map' + mapSettings.map + '/pick'+
+  mapSettings.type + '/team' + mapSettings.size + '/' + mapSettings.spectators;
 }
 
