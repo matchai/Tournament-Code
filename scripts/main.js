@@ -742,6 +742,7 @@ $('.customize').click(function() {
 // Generate button
 $('.generate').click(function() {
   $('#output').addClass('active').removeAttr('disabled');
+  $('#output').val(generateMapUrl() + generateBase64());
 });
 
 
@@ -780,11 +781,11 @@ $('select, input').change(function() {
     Tournament Code Generation
 \*------------------------------------*/
 
-var mapUrl, mapSettings = {
-  'map': '',
-  'type': '',
-  'size': '',
-  'spectators': ''
+var mapSettings = {
+  'map': '',       // Map ID
+  'type': '',      // Game type ID
+  'size': '',      // Team size
+  'spectators': '' // Spectator join type
 };
 
 function generateMapUrl() {
@@ -830,16 +831,34 @@ function generateMapUrl() {
     case 'Drop In Only':
       mapSettings.spectators = 'DROPINONLY';
       break;
-    case 'Friends':
-      mapSettings.spectators = 'FRIENDS';
-      break;
+    // case 'Friends':
+    //   mapSettings.spectators = 'FRIENDS';
+    //   break;
     case 'All':
       mapSettings.spectators = 'ALL';
       break;
   }
 
   // Create first part of tournament code with map settings
-  mapUrl = 'pvpnet://lol/customgame/joinorcreate/map' + mapSettings.map + '/pick'+
-  mapSettings.type + '/team' + mapSettings.size + '/' + mapSettings.spectators;
+  return 'pvpnet://lol/customgame/joinorcreate/map' +
+  mapSettings.map + '/pick' +
+  mapSettings.type + '/team' +
+  mapSettings.size + '/spec' +
+  mapSettings.spectators +
+  '/';
 }
 
+var gameSettings = {
+  'name': '',     // Game name
+  'extra': '',   // Any extra details to be sent to the reportURL
+  'password': '', // Game password
+  'report': ''    // URL for PHP POST for end-game results
+};
+
+function generateBase64() {
+  gameSettings.name = $('#gameName').val();
+  gameSettings.password = $('#password').val();
+
+  return window.btoa(JSON.stringify(gameSettings));
+
+}
