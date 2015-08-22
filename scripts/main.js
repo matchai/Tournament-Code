@@ -743,6 +743,7 @@ $('.customize').click(function() {
 $('.generate').click(function() {
   $('#output').addClass('active').removeAttr('disabled');
   $('#output').val(generateMapUrl() + generateBase64());
+  $('#output').select();
 });
 
 
