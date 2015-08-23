@@ -7,6 +7,7 @@ var cssmin = require ('gulp-cssmin');
 
 // JS packages
 var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
 
 // General packages
 var browserSync = require('browser-sync');
@@ -36,8 +37,10 @@ gulp.task('css', function() {
 // JS tasks
 gulp.task('js', function() {
     return gulp.src('./scripts/**/*.js')
+        .pipe(concat('main.js'))
+        .pipe(gulp.dest('./dist/scripts/'))
         .pipe(uglify())
-        .pipe(gulp.dest('./dist/scripts'));
+        .pipe(gulp.dest('./dist/scripts/'));
 });
 
 
