@@ -697,10 +697,14 @@ var splashes = [
   'Zyra_Splash_3.jpg',
   'katarina_Splash_0.jpg',
 ];
-var background = 'url(img/splash/' + splashes[Math.floor(Math.random() * splashes.length)] + ')';
+var background = 'img/splash/' + splashes[Math.floor(Math.random() * splashes.length)];
 
 $( document ).ready(function() {
-  $('<style>body{background:'+background+' 80% center no-repeat fixed; background-size: cover; }</style>').appendTo('head');
+  var img = new Image();
+  img.onload = function(){
+    $('body').css({'background': 'url('+ background + ') 80% center no-repeat fixed', 'background-size': 'cover'});
+  };
+  img.src = background;
   $('#gameName').focus();
 });
 
@@ -723,7 +727,6 @@ $('input').keyup(function() {
   }
 });
 
-
 // Advanced pane expansion
 $('.customize').click(function() {
   $(this).toggleClass('active');
@@ -741,11 +744,15 @@ $('.customize').click(function() {
 
 // Generate button
 $('.generate').click(function() {
-  $('#output').addClass('active').removeAttr('disabled');
-  $('#output').val(generateMapUrl() + generateBase64());
-  $('#output').select();
+  // Game name character min = 4 and max  = 30
+  if ($('#gameName').val().length > 3) {
+    $('#output').addClass('active').removeAttr('disabled');
+    $('#output').val(generateMapUrl() + generateBase64());
+    $('#output').select();
+  } else {
+    $('#gameName').addClass('error');
+  }
 });
-
 
 
 /*------------------------------------*\
@@ -767,12 +774,14 @@ function setStatus(){
                "Spectators: " + statusSettings.spectators;
 }
 
-// Changing the value of any select or input changes the statusSettings obj
-$('select, input').change(function() {
+// Changing the value of any input changes the statusSettings obj
+$('select').change(function() {
   var prop = $(this).attr('id');
   statusSettings[prop] = $(this).val();
   setStatus();
   $('.status').html(statusLine);
+
+  Cookies.set('statusSettings', statusSettings, { expires: 7});
 });
 
 
@@ -863,3 +872,9 @@ function generateBase64() {
   return window.btoa(JSON.stringify(gameSettings));
 
 }
+
+
+
+/*------------------------------------*\
+    Apply Settings From Cookies
+\*------------------------------------*/
