@@ -705,6 +705,8 @@ $( document ).ready(function() {
     $('body').css({'background': 'url('+ background + ') 80% center no-repeat fixed', 'background-size': 'cover'});
   };
   img.src = background;
+  applySettings(Cookies.getJSON('statusSettings') || statusSettings);
+
   $('#gameName').focus();
 });
 
@@ -758,7 +760,6 @@ $('.generate').click(function() {
 /*------------------------------------*\
     Status
 \*------------------------------------*/
-
 var statusSettings = {
   'map': 'Summoner\'s Rift',
   'gameType': 'Tournament Draft',
@@ -766,12 +767,12 @@ var statusSettings = {
   'spectators': 'Drop In Only'
 };
 
-var statusLine;
-function setStatus(){
+function setStatus(statusInput){
   statusLine = statusSettings.map + ", " +
                statusSettings.gameType + ", " +
                statusSettings.players + " players per team, " +
                "Spectators: " + statusSettings.spectators;
+  $('.status').html(statusLine);
 }
 
 // Changing the value of any input changes the statusSettings obj
@@ -779,8 +780,8 @@ $('select').change(function() {
   var prop = $(this).attr('id');
   statusSettings[prop] = $(this).val();
   setStatus();
-  $('.status').html(statusLine);
 
+  // Set cookie when tournament code is generated
   Cookies.set('statusSettings', statusSettings, { expires: 7});
 });
 
@@ -878,3 +879,17 @@ function generateBase64() {
 /*------------------------------------*\
     Apply Settings From Cookies
 \*------------------------------------*/
+
+function applySettings(settings) {
+  $('#map').val(settings.map);
+  $('#gameType').val(settings.gameType);
+  $('#players').val(settings.players);
+  $('#spectators').val(settings.spectators);
+
+  statusSettings.map = settings.map;
+  statusSettings.gameType = settings.gameType;
+  statusSettings.players = settings.players;
+  statusSettings.spectators = settings.spectators;
+
+  setStatus();
+}
