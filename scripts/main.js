@@ -705,7 +705,10 @@ $( document ).ready(function() {
     $('body').css({'background': 'url('+ background + ') 80% center no-repeat fixed', 'background-size': 'cover'});
   };
   img.src = background;
+
+  // Fade status in upon fetching cookies
   applySettings(Cookies.getJSON('statusSettings') || statusSettings);
+  $('.status').addClass('fadeIn');
 
   $('#gameName').focus();
 });
@@ -723,7 +726,10 @@ $('input').keyup(function() {
   if ($(this).val()) {
     $('label[for="' + id + '"]').addClass('active');
     $('label[for="' + id + '"]').removeClass('inactive');
-  } else {
+
+  // If active and no value, become inactive
+  // Avoids page-load inactive animation
+  } else if (!$(this).val() && $('label[for="' + id + '"]').hasClass('active')){
     $('label[for="' + id + '"]').addClass('inactive');
     $('label[for="' + id + '"]').removeClass('active');
   }
