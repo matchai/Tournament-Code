@@ -1,0 +1,93 @@
+/*------------------------------------*\
+    #BASE
+\*------------------------------------*/
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+
+  &::before {
+    background-image: radial-gradient(50% 50%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.5) 150%);
+
+    z-index: -1;
+    content: '';
+    position: fixed;
+       top: 0;
+     right: 0;
+    bottom: 0;
+      left: 0;
+  }
+}
+
+/*------------------------------------*\
+    #HEADER
+\*------------------------------------*/
+
+header {
+  color: #fff;
+
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  z-index: 1;
+  padding: 25px;
+  line-height: 0;
+}
+
+.logo {
+  font-size: 1.5em;
+  letter-spacing: 0.4px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0.5);
+  font-weight: 300;
+}
+
+.logo-light {
+  font-weight: 100;
+}
+
+
+// Placeholder background while image is loading
+.background-loading {
+  background: url("/images/bg.png");
+  z-index: -1;
+
+  position: fixed;
+     top: 0;
+   right: 0;
+  bottom: 0;
+    left: 0;
+
+    transition: opacity 800ms ease-out;
+
+    &.loaded {
+      opacity: 0;
+    }
+}
+
+/*------------------------------------*\
+    #MEDIA-QUERIES
+\*------------------------------------*/
+
+@media (max-width:768px) {
+  body::before {
+    background-image: linear-gradient(0deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%);
+  }
+
+  header {
+    margin-top: 20px;
+    justify-content: center;
+  }
+
+  .logo {
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+}
