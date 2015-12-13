@@ -14,9 +14,11 @@ html, body {
 
 body {
   font-family: 'Roboto', sans-serif;
+  background: url('/images/splash/Aatrox_Splash_0.jpg') no-repeat 80% center fixed;
+  background-size: cover;
 
   &::before {
-    background-image: radial-gradient(50% 50%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.5) 150%);
+    background-image: radial-gradient(50% 50%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.8) 150%);
 
     z-index: -1;
     content: '';
@@ -33,7 +35,7 @@ body {
 \*------------------------------------*/
 
 header {
-  color: #fff;
+  color: rgba(255,255,255,0.9);
 
   display: flex;
   justify-content: flex-start;
