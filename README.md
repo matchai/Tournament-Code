@@ -19,7 +19,7 @@ When you're ready to deploy, simply do the following:
 
 Version
 ==========================
-1.0.0
+2.0.0
 
 More Information
 ==========================
