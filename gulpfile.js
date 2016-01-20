@@ -1,10 +1,7 @@
-//initialize all of our variables
-var app, base, concat, directory, gulp, gutil, hostname, path, refresh, sass, uglify, imagemin, minifyCSS, del, browserSync, autoprefixer, gulpSequence, shell, sourceMaps, plumber;
+var gulp, gutil, concat, ugilfy, sass, sourceMaps, imagemin, minifyCSS, browserSync, autoprefixer, gulpSequence, shell, plumber, ghPages;
 
-var autoPrefixBrowserList = ['last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'];
+var autoPrefixBrowserList = ['last 2 versions', '> 2%'];
 
-//load all of our dependencies
-//add more here if you want to include more libraries
 gulp        = require('gulp');
 gutil       = require('gulp-util');
 concat      = require('gulp-concat');
@@ -18,6 +15,7 @@ autoprefixer = require('gulp-autoprefixer');
 gulpSequence = require('gulp-sequence').use(gulp);
 shell       = require('gulp-shell');
 plumber     = require('gulp-plumber');
+ghPages     = require('gulp-gh-pages');
 
 gulp.task('browserSync', function() {
     browserSync({
@@ -32,7 +30,7 @@ gulp.task('browserSync', function() {
 });
 
 
-//compressing images & handle SVG files
+//compressing images
 gulp.task('images', function(tmp) {
     gulp.src(['app/images/*.jpg', 'app/images/*.png'])
         //prevent pipe breaking caused by errors from gulp plugins
@@ -41,21 +39,21 @@ gulp.task('images', function(tmp) {
         .pipe(gulp.dest('app/images'));
 });
 
-//compressing images & handle SVG files
+//moving images to dist for deploy
 gulp.task('images-deploy', function() {
-    gulp.src(['app/images/**/*', '!app/images/README'])
+    gulp.src('app/images/**/*')
         //prevent pipe breaking caused by errors from gulp plugins
         .pipe(plumber())
         .pipe(gulp.dest('dist/images'));
 });
 
-//compiling our Javascripts
+//concatenate and compress javascript
 gulp.task('scripts', function() {
-    //this is where our dev JS scripts are
+    //these are the sources for our JS
     return gulp.src(['app/scripts/src/_includes/**/*.js', 'app/scripts/src/**/*.js'])
                 //prevent pipe breaking caused by errors from gulp plugins
                 .pipe(plumber())
-                //this is the filename of the compressed version of our JS
+                //this is the output of the compressed version of our JS
                 .pipe(concat('app.js'))
                 //catch errors
                 .on('error', gutil.log)
@@ -67,9 +65,9 @@ gulp.task('scripts', function() {
                 .pipe(browserSync.reload({stream: true}));
 });
 
-//compiling our Javascripts for deployment
+//concatenate and compress javascript deploy
 gulp.task('scripts-deploy', function() {
-    //this is where our dev JS scripts are
+    //these are the sources for our JS
     return gulp.src(['app/scripts/src/_includes/**/*.js', 'app/scripts/src/**/*.js'])
                 //prevent pipe breaking caused by errors from gulp plugins
                 .pipe(plumber())
@@ -81,7 +79,7 @@ gulp.task('scripts-deploy', function() {
                 .pipe(gulp.dest('dist/scripts'));
 });
 
-//compiling our SCSS files
+//compiling SCSS files
 gulp.task('styles', function() {
     //the initializer / master SCSS file, which will just be a file that imports everything
     return gulp.src('app/styles/scss/init.scss')
@@ -89,6 +87,7 @@ gulp.task('styles', function() {
                 .pipe(plumber({
                   errorHandler: function (err) {
                     console.log(err);
+                    //display errors encountered at the end of compiling
                     this.emit('end');
                   }
                 }))
@@ -107,7 +106,7 @@ gulp.task('styles', function() {
                 }))
                 //catch errors
                 .on('error', gutil.log)
-                //the final filename of our combined css file
+                //the combined css file
                 .pipe(concat('styles.css'))
                 //get our sources via sourceMaps
                 .pipe(sourceMaps.write())
@@ -117,7 +116,7 @@ gulp.task('styles', function() {
                 .pipe(browserSync.reload({stream: true}));
 });
 
-//compiling our SCSS files for deployment
+//compiling SCSS files for deploy
 gulp.task('styles-deploy', function() {
     //the initializer / master SCSS file, which will just be a file that imports everything
     return gulp.src('app/styles/scss/init.scss')
@@ -132,7 +131,7 @@ gulp.task('styles-deploy', function() {
                   browsers: autoPrefixBrowserList,
                   cascade:  true
                 }))
-                //the final filename of our combined css file
+                //the combined css file
                 .pipe(concat('styles.css'))
                 .pipe(minifyCSS())
                 //where to save our final, compressed css file
@@ -141,7 +140,7 @@ gulp.task('styles-deploy', function() {
 
 //basically just keeping an eye on all HTML files
 gulp.task('html', function() {
-    //watch any and all HTML files and refresh when something changes
+    //watch all HTML files and refresh when something changes
     return gulp.src('app/*.html')
         .pipe(plumber())
         .pipe(browserSync.reload({stream: true}))
@@ -149,7 +148,7 @@ gulp.task('html', function() {
         .on('error', gutil.log);
 });
 
-//migrating over all HTML files for deployment
+//copying over all HTML files for deployment
 gulp.task('html-deploy', function() {
     //grab everything, which should include htaccess, robots, etc
     gulp.src('app/*')
@@ -194,6 +193,12 @@ gulp.task('scaffold', function() {
   );
 });
 
+//cherry-pick latest commit to gh-pages branch
+gulp.task('ghpages-deploy', function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
+});
+
 //this is our master task when you run `gulp` in CLI / Terminal
 //this is the main watcher to use when in active development
 //  this will:
@@ -209,4 +214,4 @@ gulp.task('default', ['browserSync', 'scripts', 'styles'], function() {
 });
 
 //this is our deployment task, it will set everything for deployment-ready files
-gulp.task('deploy', gulpSequence('clean', 'scaffold', ['scripts-deploy', 'styles-deploy', 'images-deploy'], 'html-deploy'));
+gulp.task('deploy', gulpSequence('clean', 'scaffold', ['scripts-deploy', 'styles-deploy', 'images-deploy'], 'html-deploy', 'ghpages-deploy'));
